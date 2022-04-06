@@ -16,12 +16,11 @@
 // Have 2 random squares in our grid be a tile of 2 with a color (all same
 // numbers should have the same color. every 2 will be beige, every 4 will be a
 // darker beige, etc).
-//
 
 // Events:
 // Make JS listen for arrow key presses:
 // (have to research, but I think there should be an option for a 'keydown' press
-// or something like that)
+// or something like that. Each key should have a number attached to it.)
 // Also create arrow key buttons that when clicked, will have the same
 // functionality as when pressing respective arrow keys.
 // Pressing a direction should have the tiles all shift the most they can in that
