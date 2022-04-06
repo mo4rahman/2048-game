@@ -46,5 +46,6 @@
 // once the player loses and replaces best score if it's better than the best
 // score, else does not save the score.
 
+// Stretch Goals
 // If i finish the project early, I can dive into creating a light mode/dark mode
 // toggle to change the colors of the page/board.
