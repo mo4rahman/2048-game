@@ -39,8 +39,13 @@
 // if so then add the number and make the previous array element blank.
 // Have a gameRunning flag to be true unless the board is filled with nowhere to
 // slide, then that means the player has lost the game.
+
+// Extra buttons/displays
 // Have a New Game button to reset the game board (possibly make a
 // "createGameboard()" function and have all that in there.)
 // Have a score board keeping track of score, as well as comparing the score
 // once the player loses and replaces best score if it's better than the best
 // score, else does not save the score.
+
+// If i finish the project early, I can dive into creating a light mode/dark mode
+// toggle to change the colors of the page/board.
