@@ -55,11 +55,37 @@ function updateGameDisplay(gameGrid, gameValues) {
 }
 // For now we'll focus on functionality and shifting numbers and making them
 // appear. Later, we'll actually slide the tiles.
-function shiftNumbersUp() {}
-function shiftNumbersDown() {}
-function shiftNumbersRight() {}
-function shiftNumbersLeft() {}
+function shiftNumbersUp() {
+  // Run when up arrow key pressed
+  console.log("shift up");
+}
+function shiftNumbersDown() {
+  console.log("shift down");
+}
+function shiftNumbersRight() {
+  console.log("shift right");
+}
+function shiftNumbersLeft() {
+  console.log("shift left");
+}
+function checkKey(e) {
+//   e = e || window.event;
 
+  if (e.keyCode == "38") {
+    // up arrow
+    shiftNumbersUp();
+  } else if (e.keyCode == "40") {
+    // down arrow
+    shiftNumbersDown();
+  } else if (e.keyCode == "37") {
+    // left arrow
+    shiftNumbersLeft();
+  } else if (e.keyCode == "39") {
+    // right arrow
+    shiftNumbersRight();
+  }
+}
+document.onkeydown = checkKey;
 // Events:
 // Make JS listen for arrow key presses:
 // (have to research, but I think there should be an option for a 'keydown' press
