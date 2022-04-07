@@ -6,8 +6,8 @@
 }
 .game-tile {
   background-color: blanchedalmond;
-  border: 3px solid black;
+  border: 6px solid gray;
   /* Can combing border styling in one line like above^ */
   /* border-color: black;
-  border-style: solid; */
+    border-style: solid; */
 }
