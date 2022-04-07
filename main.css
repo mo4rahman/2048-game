@@ -1,0 +1,13 @@
+.gameboard {
+  display: grid;
+  grid-template-columns: 130px 130px 130px 130px;
+  grid-template-rows: 130px 130px 130px 130px;
+  justify-content: center;
+}
+.game-tile {
+  background-color: blanchedalmond;
+  border: 3px solid black;
+  /* Can combing border styling in one line like above^ */
+  /* border-color: black;
+  border-style: solid; */
+}

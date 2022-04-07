@@ -6,7 +6,7 @@
 
 // Create Game board:
 // Create a square board in the center of the page, with lines that divide the
-// board into a 4x4 grid of empty white space
+// board into a 4x4 grid of empty white space - DONE
 
 // Create Tiles:
 // Have each square in our game board grid have the ability to display a square
