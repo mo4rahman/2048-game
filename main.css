@@ -2,10 +2,13 @@
   display: grid;
   grid-template-columns: 130px 130px 130px 130px;
   grid-template-rows: 130px 130px 130px 130px;
+  margin-top: 100px;
   justify-content: center;
 }
 .game-tile {
   background-color: blanchedalmond;
+  text-align: center;
+  font-size: 70px;
   border: 6px solid gray;
   /* Can combing border styling in one line like above^ */
   /* border-color: black;

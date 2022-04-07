@@ -6,16 +6,40 @@
 
 // Create Game board:
 // Create a square board in the center of the page, with lines that divide the
-// board into a 4x4 grid of empty white space - DONE
+// board into a 4x4 grid of empty white space
+// - DONE
 
 // Create Tiles:
 // Have each square in our game board grid have the ability to display a square
 // tile for each square (we can change the color and number based on js events)
+// - DONE
 
 // Initializing game:
 // Have 2 random squares in our grid be a tile of 2 with a color (all same
 // numbers should have the same color. every 2 will be beige, every 4 will be a
 // darker beige, etc).
+
+// We'll have 2 arrays. One with all the stored tiles, and one empty array that
+// we will fill and update as the game is being played.
+const allGameTiles = document.querySelectorAll(".game-tile");
+const gameGrid = []
+for (i= 0; i<16; i+=4){
+    gameGrid.push([allGameTiles[i], allGameTiles[i+1], allGameTiles[i+2], allGameTiles[i+3]])
+}
+console.log(gameGrid)
+// Create an array for game-tile values
+const gameValues = [];
+for (let i = 0; i < 4; i++) {
+  gameValues.push([0, 0, 0, 0]);
+}
+
+
+// For now we'll focus on functionality and shifting numbers and making them
+// appear. Later, we'll actually slide the tiles.
+function shiftNumbersUp() {}
+function shiftNumbersDown() {}
+function shiftNumbersRight() {}
+function shiftNumbersLeft() {}
 
 // Events:
 // Make JS listen for arrow key presses:
