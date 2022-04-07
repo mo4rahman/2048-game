@@ -22,18 +22,37 @@
 // We'll have 2 arrays. One with all the stored tiles, and one empty array that
 // we will fill and update as the game is being played.
 const allGameTiles = document.querySelectorAll(".game-tile");
-const gameGrid = []
-for (i= 0; i<16; i+=4){
-    gameGrid.push([allGameTiles[i], allGameTiles[i+1], allGameTiles[i+2], allGameTiles[i+3]])
+const gameGrid = [];
+for (i = 0; i < 16; i += 4) {
+  gameGrid.push([
+    allGameTiles[i],
+    allGameTiles[i + 1],
+    allGameTiles[i + 2],
+    allGameTiles[i + 3],
+  ]);
 }
-console.log(gameGrid)
+
 // Create an array for game-tile values
 const gameValues = [];
 for (let i = 0; i < 4; i++) {
   gameValues.push([0, 0, 0, 0]);
 }
 
+// Now tie together the values to the DOM
+// We can put this into a function later to update our gameBoard
+for (let i = 0; i < gameValues.length; i++) {
+  for (let j = 0; j < gameValues[i].length; j++) {
+    gameGrid[i][j].innerText = gameValues[i][j];
+  }
+}
 
+function updateGameDisplay(gameGrid, gameValues) {
+  for (let i = 0; i < gameValues.length; i++) {
+    for (let j = 0; j < gameValues[i].length; j++) {
+      gameGrid[i][j].innerText = gameValues[i][j];
+    }
+  }
+}
 // For now we'll focus on functionality and shifting numbers and making them
 // appear. Later, we'll actually slide the tiles.
 function shiftNumbersUp() {}
