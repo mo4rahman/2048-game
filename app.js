@@ -52,8 +52,9 @@
 // If i finish the project early, I can dive into creating a light mode/dark mode
 // toggle to change the colors of the page/board.
 
-// We'll have 2 arrays. One with all the stored tiles, and one empty array that
+// We'll have 2 arrays. One with all the stored tiles, and one array filled with 0's that
 // we will fill and update as the game is being played.
+// #FIXME: Refactor later and create a 'createGameboard' function
 const allGameTiles = document.querySelectorAll(".game-tile");
 const gameGrid = [];
 for (i = 0; i < 16; i += 4) {
@@ -72,20 +73,16 @@ for (let i = 0; i < 4; i++) {
 }
 
 // Now tie together the values to the DOM
-// We can put this into a function later to update our gameBoard
-for (let i = 0; i < gameValues.length; i++) {
-  for (let j = 0; j < gameValues[i].length; j++) {
-    gameGrid[i][j].innerText = gameValues[i][j];
-  }
-}
-
-function updateGameDisplay(gameGrid, gameValues) {
+// Updates old display with current changes after keypress. We will
+// also use this to initialize the board at the start of the game.
+function updateGameDisplay(allGameTiles, gameValues) {
   for (let i = 0; i < gameValues.length; i++) {
     for (let j = 0; j < gameValues[i].length; j++) {
-      gameGrid[i][j].innerText = gameValues[i][j];
+      allGameTiles[i][j].innerText = gameValues[i][j];
     }
   }
 }
+updateGameDisplay(gameGrid, gameValues);
 // For now we'll focus on functionality and shifting numbers and making them
 // appear. Later, we'll actually slide the tiles.
 function shiftNumbersUp() {
