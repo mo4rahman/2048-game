@@ -83,8 +83,9 @@ function updateGameDisplay(gameDisplay, gameValues) {
   }
 }
 updateGameDisplay(gameDisplay, gameValues);
+
 // For now we'll focus on functionality and shifting numbers and making them
-// appear. Later, we'll actually slide the tiles.
+// appear. When we finsih, we'll actually slide the tiles visually.
 function shiftNumbersUp() {
   // Run when up arrow key pressed
   console.log("shift up");
@@ -98,23 +99,41 @@ function shiftNumbersRight() {
 function shiftNumbersLeft() {
   console.log("shift left");
 }
-function checkKey(e) {
-  // Used just in case somehow, someone is running my game in an earlier
-  // version of Internet Explorer that doesn't pass in the window event.
-  e = e || window.event;
+// function checkKey(e) {
+//   // Used just in case somehow, someone is running my game in an earlier
+//   // version of Internet Explorer that doesn't pass in the window event.
+//   e = e || window.event;
 
-  if (e.keyCode === 38) {
+//   if (e.keyCode === 38) {
+//     // up arrow
+//     shiftNumbersUp();
+//   } else if (e.keyCode === 40) {
+//     // down arrow
+//     shiftNumbersDown();
+//   } else if (e.keyCode === 37) {
+//     // left arrow
+//     shiftNumbersLeft();
+//   } else if (e.keyCode === 39) {
+//     // right arrow
+//     shiftNumbersRight();
+//   }
+// }
+document.onkeydown = function (e) {
+  // keyCode is technically depracated (“inconsistent across platforms and even the same implementation on different operating systems or using different localizations.” according to a medium article)
+  e = e || window.event;
+  key = e.key || e.keyCode;
+
+  if (key === 38 || key === "ArrowUp") {
     // up arrow
     shiftNumbersUp();
-  } else if (e.keyCode === 40) {
+  } else if (key === 40 || key === "ArrowDown") {
     // down arrow
     shiftNumbersDown();
-  } else if (e.keyCode === 37) {
+  } else if (key === 37 || key === "ArrowLeft") {
     // left arrow
     shiftNumbersLeft();
-  } else if (e.keyCode === 39) {
+  } else if (key === 39 || key === "ArrowRight") {
     // right arrow
     shiftNumbersRight();
   }
-}
-document.onkeydown = checkKey;
+};
