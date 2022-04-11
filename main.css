@@ -5,11 +5,12 @@
   margin-top: 100px;
   justify-content: center;
 }
+
 .game-tile {
   background-color: blanchedalmond;
   text-align: center;
   font-size: 70px;
-  border: 6px solid gray;
+  border: 10px solid rgb(247, 182, 118);
   /* Can combine border styling in one line like above^ */
   /* border-color: black;
     border-style: solid; */

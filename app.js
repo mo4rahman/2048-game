@@ -54,7 +54,7 @@
 
 // We'll have 2 arrays. One with all the stored tiles, and one array filled with 0's that
 // we will fill and update as the game is being played.
-// #FIXME: Refactor later and create a 'createGameboard' function
+// #FIXME: Refactor later and create a 'createGameboard' function (start of new game)
 const allGameTiles = document.querySelectorAll(".game-tile");
 const gameDisplay = [];
 for (i = 0; i < 16; i += 4) {
