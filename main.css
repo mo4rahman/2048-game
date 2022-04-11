@@ -1,3 +1,6 @@
+body {
+  background-color: rgb(233, 219, 169);
+}
 .gameboard {
   display: grid;
   grid-template-columns: 130px 130px 130px 130px;
