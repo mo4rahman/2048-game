@@ -85,17 +85,43 @@ function updateGameDisplay(gameDisplay, gameValues) {
 
 // For now we'll focus on functionality and shifting numbers and making them
 // appear. When we finsih, we'll actually slide the tiles visually.
-function shiftNumbersUp() {
+// IMPORTANT! WHICHEVER WAY WE'RE SHIFTING, START WORKING
+// FROM THE FARTHEST MOST SIDE. FOR EXAMPLE, IF WE'RE
+// SHIFTING UP, START FROM TOP ROW AND TRICKLED DOWN
+function shiftNumbersUp(gameValues) {
   // Run when up arrow key pressed
   console.log("shift up");
+  // We"ll go row by row through each element
+  // We'll start with row 1 because row 0 can't move up
+  for (let i = 0; i < gameValues.length; i++) {
+    for (let j = 0; j < gameValues[i].length; j++) {
+      if (i === 0) {
+        break;
+      } else if (i === 1) {
+        if (gameValues[i][j] === 0) {
+          continue;
+        } else {
+          if (gameValues[i - 1][j] === 0) {
+            gameValues[i - 1][j] = gameValues[i][j];
+            gameValues[i][j] = 0;
+          } else if (gameValues[i - 1][j] === gameValues[i][j]) {
+            gameValues[i - 1][j] *= 2;
+            gameValues[i][j] = 0;
+          } else {
+            continue;
+          }
+        }
+      }
+    }
+  }
 }
-function shiftNumbersDown() {
+function shiftNumbersDown(gameValues) {
   console.log("shift down");
 }
-function shiftNumbersRight() {
+function shiftNumbersRight(gameValues) {
   console.log("shift right");
 }
-function shiftNumbersLeft() {
+function shiftNumbersLeft(gameValues) {
   console.log("shift left");
 }
 
@@ -140,16 +166,18 @@ addEventListener("keydown", function (e) {
   if (gameRun) {
     if (key === 38 || key === "ArrowUp") {
       // up arrow
-      shiftNumbersUp();
+      shiftNumbersUp(gameValues);
+      console.log("working");
+      updateGameDisplay(gameDisplay, gameValues);
     } else if (key === 40 || key === "ArrowDown") {
       // down arrow
-      shiftNumbersDown();
+      shiftNumbersDown(gameValues);
     } else if (key === 37 || key === "ArrowLeft") {
       // left arrow
-      shiftNumbersLeft();
+      shiftNumbersLeft(gameValues);
     } else if (key === 39 || key === "ArrowRight") {
       // right arrow
-      shiftNumbersRight();
+      shiftNumbersRight(gameValues);
     }
   }
 });
