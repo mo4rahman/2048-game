@@ -111,6 +111,36 @@ function shiftNumbersUp(gameValues) {
             continue;
           }
         }
+      } else if (i === 2) {
+        if (gameValues[i][j] === 0) {
+          continue;
+        } else {
+          if (gameValues[i - 1][j] === 0) {
+            if (gameValues[i - 2][j] === 0) {
+              gameValues[i - 2][j] = gameValues[i][j];
+              gameValues[i][j] = 0;
+            } else if (gameValues[i - 2][j] === gameValues[i][j]) {
+              gameValues[i - 2][j] *= 2;
+              gameValues[i][j] = 0;
+            } else {
+              gameValues[i - 1][j] = gameValues[i][j];
+              gameValues[i][j] = 0;
+            }
+          } else if (gameValues[i - 1][j] === gameValues[i][j]) {
+            if (gameValues[i - 2][j] === 0) {
+              gameValues[i - 2][j] *= 2;
+              gameValues[i][j] = 0;
+            } else if (gameValues[i - 2][j] === gameValues[i][j]) {
+              gameValues[i - 2][j] *= 2;
+              // 1st row stays the same
+              gameValues[i][j] = 0;
+            } else {
+              gameValues[i - 1][j] *= 2;
+              gameValues[i][j] = 0;
+            }
+          }
+        }
+      } else if (i === 3) {
       }
     }
   }
@@ -124,12 +154,28 @@ function shiftNumbersRight(gameValues) {
 function shiftNumbersLeft(gameValues) {
   console.log("shift left");
 }
+function checkBoardFull(gameValues) {
+  // Doing eachRow 'in' instead of 'of' broke my code. Got it mixed up with python
+  for (eachRow of gameValues) {
+    if (eachRow.includes(0)) {
+      return false;
+    }
+  }
+  return true;
+}
 
 // We will have to continuously create random tiles with a value of 2 on the
 // board, so we will put it in a function.
 // TODO: Would it be better to have tiles all in one
 // array, or have an array of row values?
 function newRandomTile(gameValues) {
+  // Forgot to have a break if there is no empty tile
+  // FIXME: Right now, we check random spots, even if they're taken. Later,
+  // we should only randomly select open spots.
+  if (checkBoardFull(gameValues)) {
+    console.log("Cannot create a random tile, board is full");
+    return;
+  }
   let randomRow;
   let randomCol;
   while (true) {
@@ -167,7 +213,7 @@ addEventListener("keydown", function (e) {
     if (key === 38 || key === "ArrowUp") {
       // up arrow
       shiftNumbersUp(gameValues);
-      console.log("working");
+      newRandomTile(gameValues);
       updateGameDisplay(gameDisplay, gameValues);
     } else if (key === 40 || key === "ArrowDown") {
       // down arrow
