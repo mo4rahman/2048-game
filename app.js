@@ -99,7 +99,40 @@ function shiftNumbersLeft() {
   console.log("shift left");
 }
 
-document.onkeydown = function (e) {
+// We will have to continuously create random tiles with a value of 2 on the
+// board, so we will put it in a function.
+// TODO: Would it be better to have tiles all in one
+// array, or have an array of row values?
+function newRandomTile(gameValues) {
+  let randomRow;
+  let randomCol;
+  while (true) {
+    // Returns a random integer from 0 to 3 inclusive:
+    randomRow = Math.floor(Math.random() * 4);
+    randomCol = Math.floor(Math.random() * 4);
+    if (gameValues[randomRow][randomCol] === 0) {
+      gameValues[randomRow][randomCol] = 2;
+      return;
+    }
+  }
+}
+
+// Main Game loop
+let gameRun = false;
+
+if (gameRun) {
+  updateGameDisplay(gameDisplay, gameValues);
+  // We'll start by picking 2 random numbers between 0 and 15 (for the tiles
+  // on the board) and then setting them equal to 2.
+  newRandomTile(gameValues);
+  newRandomTile(gameValues);
+  updateGameDisplay(gameDisplay, gameValues);
+}
+
+// Used document.onkeydown because I looked it up on
+// google, but then I found that we can just use our
+// addEventListener like we always have
+addEventListener("keydown", function (e) {
   // keyCode is technically depracated (“inconsistent across platforms and even the same implementation on different operating systems or using different localizations.” according to a medium article)
 
   // Used just in case somehow, someone is running my game in an earlier
@@ -120,34 +153,4 @@ document.onkeydown = function (e) {
     // right arrow
     shiftNumbersRight();
   }
-};
-
-// We will have to continuously create random tiles with a value of 2 on the
-// board, so we will put it in a function.
-// TODO: Would it be better to have tiles all in one
-// array, or have an array of row values?
-function newRandomTile(gameValues) {
-  let randomRow;
-  let randomCol;
-  while (true) {
-    // Returns a random integer from 0 to 3 inclusive:
-    randomRow = Math.floor(Math.random() * 4);
-    randomCol = Math.floor(Math.random() * 4);
-    if (gameValues[randomRow][randomCol] === 0) {
-      gameValues[randomRow][randomCol] = 2;
-      return;
-    }
-  }
-}
-
-// Main Game loop
-let gameRun = true;
-
-if (gameRun) {
-  updateGameDisplay(gameDisplay, gameValues);
-  // We'll start by picking 2 random numbers between 0 and 15 (for the tiles
-  // on the board) and then setting them equal to 2.
-  newRandomTile(gameValues);
-  newRandomTile(gameValues);
-  updateGameDisplay(gameDisplay, gameValues);
-}
+});
