@@ -82,7 +82,6 @@ function updateGameDisplay(gameDisplay, gameValues) {
     }
   }
 }
-updateGameDisplay(gameDisplay, gameValues);
 
 // For now we'll focus on functionality and shifting numbers and making them
 // appear. When we finsih, we'll actually slide the tiles visually.
@@ -99,27 +98,12 @@ function shiftNumbersRight() {
 function shiftNumbersLeft() {
   console.log("shift left");
 }
-// function checkKey(e) {
-//   // Used just in case somehow, someone is running my game in an earlier
-//   // version of Internet Explorer that doesn't pass in the window event.
-//   e = e || window.event;
 
-//   if (e.keyCode === 38) {
-//     // up arrow
-//     shiftNumbersUp();
-//   } else if (e.keyCode === 40) {
-//     // down arrow
-//     shiftNumbersDown();
-//   } else if (e.keyCode === 37) {
-//     // left arrow
-//     shiftNumbersLeft();
-//   } else if (e.keyCode === 39) {
-//     // right arrow
-//     shiftNumbersRight();
-//   }
-// }
 document.onkeydown = function (e) {
   // keyCode is technically depracated (“inconsistent across platforms and even the same implementation on different operating systems or using different localizations.” according to a medium article)
+
+  // Used just in case somehow, someone is running my game in an earlier
+  // version of Internet Explorer that doesn't pass in the window event.
   e = e || window.event;
   key = e.key || e.keyCode;
 
@@ -137,3 +121,16 @@ document.onkeydown = function (e) {
     shiftNumbersRight();
   }
 };
+
+// We will have to continuously create random tiles with a value of 2 on the
+// board, so we will put it in a function
+function newRandomTile() {}
+
+// Main Game loop
+let gameRun = true;
+
+if (gameRun) {
+  updateGameDisplay(gameDisplay, gameValues);
+  // We'll start by picking 2 random numbers between 0 and 15 (for the tiles
+  // on the board) and then setting them equal to 2.
+}
