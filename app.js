@@ -252,11 +252,10 @@ function checkBoardFull(gameValues) {
 
 // We will have to continuously create random tiles with a value of 2 on the
 // board, so we will put it in a function.
-// TODO: Would it be better to have tiles all in one
-// array, or have an array of row values?
 function newRandomTile(gameValues) {
   // Forgot to have a break if there is no empty tile
-  // FIXME: Right now, we check random spots, even if they're taken. Later,
+  // FIXME: Right now, we check random spots to create the random tile, even if 
+  // they're taken. Later,
   // we should only randomly select open spots.
   if (checkBoardFull(gameValues)) {
     console.log("Cannot create a random tile, board is full");
@@ -309,9 +308,13 @@ addEventListener("keydown", function (e) {
     } else if (key === 37 || key === "ArrowLeft") {
       // left arrow
       shiftNumbersLeft(gameValues);
+      newRandomTile(gameValues);
+      updateGameDisplay(gameDisplay, gameValues);
     } else if (key === 39 || key === "ArrowRight") {
       // right arrow
       shiftNumbersRight(gameValues);
+      newRandomTile(gameValues);
+      updateGameDisplay(gameDisplay, gameValues);
     }
   }
 });
