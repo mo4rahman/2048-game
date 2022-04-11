@@ -92,12 +92,10 @@ function shiftNumbersUp(gameValues) {
   // Run when up arrow key pressed
   console.log("shift up");
   // We"ll go row by row through each element
-  // We'll start with row 1 because row 0 can't move up
-  for (let i = 0; i < gameValues.length; i++) {
+  // We'll start with row 1 because row 0 can't move up at row 0
+  for (let i = 1; i < gameValues.length; i++) {
     for (let j = 0; j < gameValues[i].length; j++) {
-      if (i === 0) {
-        break;
-      } else if (i === 1) {
+      if (i === 1) {
         if (gameValues[i][j] === 0) {
           continue;
         } else {
@@ -127,18 +125,6 @@ function shiftNumbersUp(gameValues) {
               gameValues[i][j] = 0;
             }
           } else if (gameValues[i - 1][j] === gameValues[i][j]) {
-            // if (gameValues[i - 2][j] === 0) {
-            //   gameValues[i - 2][j] *= 2;
-            //   gameValues[i][j] = 0;
-            // } else if (gameValues[i - 2][j] === gameValues[i][j]) {
-            //   gameValues[i - 2][j] *= 2;
-            //   // 1st row stays the same
-            //   gameValues[i][j] = 0;
-            // } else {
-            //   gameValues[i - 1][j] *= 2;
-            //   gameValues[i][j] = 0;
-            // }
-            // Dont need to test extra cases
             gameValues[i - 1][j] *= 2;
             gameValues[i][j] = 0;
           }
@@ -175,9 +161,79 @@ function shiftNumbersUp(gameValues) {
     }
   }
 }
+
 function shiftNumbersDown(gameValues) {
   console.log("shift down");
+  // We'll start with row 2 because row 3 can't move down at row 3
+  for (let i = 2; i >= 0; i--) {
+    for (j = 0; j < gameValues[i].length; j++) {
+      if (i === 2) {
+        if (gameValues[i][j] === 0) {
+          continue;
+        } else {
+          if (gameValues[i + 1][j] === 0) {
+            gameValues[i + 1][j] = gameValues[i][j];
+            gameValues[i][j] = 0;
+          } else if (gameValues[i + 1][j] === gameValues[i][j]) {
+            gameValues[i + 1][j] *= 2;
+            gameValues[i][j] = 0;
+          } else {
+            continue;
+          }
+        }
+      } else if (i === 1) {
+        if (gameValues[i][j] === 0) {
+          continue;
+        } else {
+          if (gameValues[i + 1][j] === 0) {
+            if (gameValues[i + 2][j] === 0) {
+              gameValues[i + 2][j] = gameValues[i][j];
+              gameValues[i][j] = 0;
+            } else if (gameValues[i + 2][j] === gameValues[i][j]) {
+              gameValues[i + 2][j] *= 2;
+              gameValues[i][j] = 0;
+            } else {
+              gameValues[i + 1][j] = gameValues[i][j];
+              gameValues[i][j] = 0;
+            }
+          } else if (gameValues[i + 1][j] === gameValues[i][j]) {
+            gameValues[i + 1][j] *= 2;
+            gameValues[i][j] = 0;
+          }
+        }
+      } else if (i === 0) {
+        if (gameValues[i][j] === 0) {
+          continue;
+        } else {
+          if (gameValues[i + 1][j] === 0) {
+            if (gameValues[i + 2][j] === 0) {
+              if (gameValues[i + 3][j] === 0) {
+                gameValues[i + 3][j] = gameValues[i][j];
+                gameValues[i][j] = 0;
+              } else if (gameValues[i + 3][j] === gameValues[i][j]) {
+                gameValues[i + 3][j] *= 2;
+                gameValues[i][j] = 0;
+              } else {
+                gameValues[i + 2][j] = gameValues[i][j];
+                gameValues[i][j] = 0;
+              }
+            } else if (gameValues[i + 2][j] === gameValues[i][j]) {
+              gameValues[i + 2][j] *= 2;
+              gameValues[i][j] = 0;
+            } else {
+              gameValues[i + 1][j] = gameValues[i][j];
+              gameValues[i][j] = 0;
+            }
+          } else if (gameValues[i + 1][j] === gameValues[i][j]) {
+            gameValues[i + 1][j] *= 2;
+            gameValues[i][j] = 0;
+          }
+        }
+      }
+    }
+  }
 }
+
 function shiftNumbersRight(gameValues) {
   console.log("shift right");
 }
@@ -248,6 +304,8 @@ addEventListener("keydown", function (e) {
     } else if (key === 40 || key === "ArrowDown") {
       // down arrow
       shiftNumbersDown(gameValues);
+      newRandomTile(gameValues);
+      updateGameDisplay(gameDisplay, gameValues);
     } else if (key === 37 || key === "ArrowLeft") {
       // left arrow
       shiftNumbersLeft(gameValues);
