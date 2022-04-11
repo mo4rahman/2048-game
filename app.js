@@ -118,16 +118,14 @@ function newRandomTile(gameValues) {
 }
 
 // Main Game loop
-let gameRun = false;
+let gameRun = true;
 
-if (gameRun) {
-  updateGameDisplay(gameDisplay, gameValues);
-  // We'll start by picking 2 random numbers between 0 and 15 (for the tiles
-  // on the board) and then setting them equal to 2.
-  newRandomTile(gameValues);
-  newRandomTile(gameValues);
-  updateGameDisplay(gameDisplay, gameValues);
-}
+// INITIALIZE THE BOARD
+// We'll start by picking 2 random numbers between 0 and 15 (for the tiles
+// on the board) and then setting them equal to 2.
+newRandomTile(gameValues);
+newRandomTile(gameValues);
+updateGameDisplay(gameDisplay, gameValues);
 
 // Used document.onkeydown because I looked it up on
 // google, but then I found that we can just use our
@@ -139,18 +137,19 @@ addEventListener("keydown", function (e) {
   // version of Internet Explorer that doesn't pass in the window event.
   e = e || window.event;
   key = e.key || e.keyCode;
-
-  if (key === 38 || key === "ArrowUp") {
-    // up arrow
-    shiftNumbersUp();
-  } else if (key === 40 || key === "ArrowDown") {
-    // down arrow
-    shiftNumbersDown();
-  } else if (key === 37 || key === "ArrowLeft") {
-    // left arrow
-    shiftNumbersLeft();
-  } else if (key === 39 || key === "ArrowRight") {
-    // right arrow
-    shiftNumbersRight();
+  if (gameRun) {
+    if (key === 38 || key === "ArrowUp") {
+      // up arrow
+      shiftNumbersUp();
+    } else if (key === 40 || key === "ArrowDown") {
+      // down arrow
+      shiftNumbersDown();
+    } else if (key === 37 || key === "ArrowLeft") {
+      // left arrow
+      shiftNumbersLeft();
+    } else if (key === 39 || key === "ArrowRight") {
+      // right arrow
+      shiftNumbersRight();
+    }
   }
 });
