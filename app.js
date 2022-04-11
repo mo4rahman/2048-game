@@ -127,20 +127,50 @@ function shiftNumbersUp(gameValues) {
               gameValues[i][j] = 0;
             }
           } else if (gameValues[i - 1][j] === gameValues[i][j]) {
-            if (gameValues[i - 2][j] === 0) {
-              gameValues[i - 2][j] *= 2;
-              gameValues[i][j] = 0;
-            } else if (gameValues[i - 2][j] === gameValues[i][j]) {
-              gameValues[i - 2][j] *= 2;
-              // 1st row stays the same
-              gameValues[i][j] = 0;
-            } else {
-              gameValues[i - 1][j] *= 2;
-              gameValues[i][j] = 0;
-            }
+            // if (gameValues[i - 2][j] === 0) {
+            //   gameValues[i - 2][j] *= 2;
+            //   gameValues[i][j] = 0;
+            // } else if (gameValues[i - 2][j] === gameValues[i][j]) {
+            //   gameValues[i - 2][j] *= 2;
+            //   // 1st row stays the same
+            //   gameValues[i][j] = 0;
+            // } else {
+            //   gameValues[i - 1][j] *= 2;
+            //   gameValues[i][j] = 0;
+            // }
+            // Dont need to test extra cases
+            gameValues[i - 1][j] *= 2;
+            gameValues[i][j] = 0;
           }
         }
       } else if (i === 3) {
+        if (gameValues[i][j] === 0) {
+          continue;
+        } else {
+          if (gameValues[i - 1][j] === 0) {
+            if (gameValues[i - 2][j] === 0) {
+              if (gameValues[i - 3][j] === 0) {
+                gameValues[i - 3][j] = gameValues[i][j];
+                gameValues[i][j] = 0;
+              } else if (gameValues[i - 3][j] === gameValues[i][j]) {
+                gameValues[i - 3][j] *= 2;
+                gameValues[i][j] = 0;
+              } else {
+                gameValues[i - 2][j] = gameValues[i][j];
+                gameValues[i][j] = 0;
+              }
+            } else if (gameValues[i - 2][j] === gameValues[i][j]) {
+              gameValues[i - 2][j] *= 2;
+              gameValues[i][j] = 0;
+            } else {
+              gameValues[i - 1][j] = gameValues[i][j];
+              gameValues[i][j] = 0;
+            }
+          } else if (gameValues[i - 1][j] === gameValues[i][j]) {
+            gameValues[i - 1][j] *= 2;
+            gameValues[i][j] = 0;
+          }
+        }
       }
     }
   }
