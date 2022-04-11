@@ -236,9 +236,145 @@ function shiftNumbersDown(gameValues) {
 
 function shiftNumbersRight(gameValues) {
   console.log("shift right");
+  for (let eachRow of gameValues) {
+    // We start at index 2 because can't shift index 3 any more right
+    for (let i = 2; i >= 0; i--) {
+      if (i === 2) {
+        if (eachRow[i] === 0) {
+          continue;
+        } else {
+          if (eachRow[i + 1] === 0) {
+            eachRow[i + 1] = eachRow[i];
+            eachRow[i] = 0;
+          } else if (eachRow[i + 1] === eachRow[i]) {
+            eachRow[i + 1] *= 2;
+            eachRow[i] = 0;
+          } else {
+            continue;
+          }
+        }
+      } else if (i === 1) {
+        if (eachRow[i] === 0) {
+          continue;
+        } else {
+          if (eachRow[i + 1] === 0) {
+            if (eachRow[i + 2] === 0) {
+              eachRow[i + 2] = eachRow[i];
+              eachRow[i] = 0;
+            } else if (eachRow[i + 2] === eachRow[i]) {
+              eachRow[i + 2] *= 2;
+              eachRow[i] = 0;
+            } else {
+              eachRow[i + 1] = eachRow[i];
+              eachRow[i] = 0;
+            }
+          } else if (eachRow[i + 1] === eachRow[i]) {
+            eachRow[i + 1] *= 2;
+            eachRow[i] = 0;
+          }
+        }
+      } else if (i === 0) {
+        if (eachRow[i] === 0) {
+          continue;
+        } else {
+          if (eachRow[i + 1] === 0) {
+            if (eachRow[i + 2] === 0) {
+              if (eachRow[i + 3] === 0) {
+                eachRow[i + 3] = eachRow[i];
+                eachRow[i] = 0;
+              } else if (eachRow[i + 3] === eachRow[i]) {
+                eachRow[i + 3] *= 2;
+                eachRow[i] = 0;
+              } else {
+                eachRow[i + 2] = eachRow[i];
+                eachRow[i] = 0;
+              }
+            } else if (eachRow[i + 2] === eachRow[i]) {
+              eachRow[i + 2] *= 2;
+              eachRow[i] = 0;
+            } else {
+              eachRow[i + 1] = eachRow[i];
+              eachRow[i] = 0;
+            }
+          } else if (eachRow[i + 1] === eachRow[i]) {
+            eachRow[i + 1] *= 2;
+            eachRow[i] = 0;
+          }
+        }
+      }
+    }
+  }
 }
 function shiftNumbersLeft(gameValues) {
   console.log("shift left");
+  for (let eachRow of gameValues) {
+    // We start at index 2 because can't shift index 3 any more right
+    for (let i = 1; i < eachRow.length; i++) {
+      if (i === 1) {
+        if (eachRow[i] === 0) {
+          continue;
+        } else {
+          if (eachRow[i - 1] === 0) {
+            eachRow[i - 1] = eachRow[i];
+            eachRow[i] = 0;
+          } else if (eachRow[i - 1] === eachRow[i]) {
+            eachRow[i - 1] *= 2;
+            eachRow[i] = 0;
+          } else {
+            continue;
+          }
+        }
+      } else if (i === 2) {
+        if (eachRow[i] === 0) {
+          continue;
+        } else {
+          if (eachRow[i - 1] === 0) {
+            if (eachRow[i - 2] === 0) {
+              eachRow[i - 2] = eachRow[i];
+              eachRow[i] = 0;
+            } else if (eachRow[i - 2] === eachRow[i]) {
+              eachRow[i - 2] *= 2;
+              eachRow[i] = 0;
+            } else {
+              eachRow[i - 1] = eachRow[i];
+              eachRow[i] = 0;
+            }
+          } else if (eachRow[i - 1] === eachRow[i]) {
+            eachRow[i - 1] *= 2;
+            eachRow[i] = 0;
+          }
+        }
+      } else if (i === 3) {
+        if (eachRow[i] === 0) {
+          continue;
+        } else {
+          if (eachRow[i - 1] === 0) {
+            if (eachRow[i - 2] === 0) {
+              if (eachRow[i - 3] === 0) {
+                eachRow[i - 3] = eachRow[i];
+                eachRow[i] = 0;
+              } else if (eachRow[i - 3] === eachRow[i]) {
+                eachRow[i - 3] *= 2;
+                eachRow[i] = 0;
+              } else {
+                eachRow[i - 2] = eachRow[i];
+                eachRow[i] = 0;
+              }
+            } else if (eachRow[i - 2] === eachRow[i]) {
+              eachRow[i - 2] *= 2;
+              eachRow[i] = 0;
+            } else {
+              eachRow[i - 1] = eachRow[i];
+              eachRow[i] = 0;
+            }
+          } else if (eachRow[i - 1] === eachRow[i]) {
+            eachRow[i - 1] *= 2;
+            eachRow[i] = 0;
+          }
+        }
+      }
+    }
+  }
 }
 function checkBoardFull(gameValues) {
   // Doing eachRow 'in' instead of 'of' broke my code. Got it mixed up with python
@@ -254,7 +390,7 @@ function checkBoardFull(gameValues) {
 // board, so we will put it in a function.
 function newRandomTile(gameValues) {
   // Forgot to have a break if there is no empty tile
-  // FIXME: Right now, we check random spots to create the random tile, even if 
+  // FIXME: Right now, we check random spots to create the random tile, even if
   // they're taken. Later,
   // we should only randomly select open spots.
   if (checkBoardFull(gameValues)) {
