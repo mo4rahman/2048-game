@@ -125,7 +125,6 @@ function updateColor(gameValueItem, gameDisplayItem) {
 // SHIFTING UP, START FROM TOP ROW AND TRICKLED DOWN
 function shiftNumbersUp(gameValues) {
   // Run when up arrow key pressed
-  console.log("shift up");
   // We"ll go row by row through each element
   // We'll start with row 1 because row 0 can't move up at row 0
   for (let i = 1; i < gameValues.length; i++) {
@@ -198,7 +197,6 @@ function shiftNumbersUp(gameValues) {
 }
 
 function shiftNumbersDown(gameValues) {
-  console.log("shift down");
   // We'll start with row 2 because row 3 can't move down at row 3
   for (let i = 2; i >= 0; i--) {
     for (j = 0; j < gameValues[i].length; j++) {
@@ -270,7 +268,6 @@ function shiftNumbersDown(gameValues) {
 }
 
 function shiftNumbersRight(gameValues) {
-  console.log("shift right");
   for (let eachRow of gameValues) {
     // We start at index 2 because can't shift index 3 any more right
     for (let i = 2; i >= 0; i--) {
@@ -341,7 +338,6 @@ function shiftNumbersRight(gameValues) {
   }
 }
 function shiftNumbersLeft(gameValues) {
-  console.log("shift left");
   for (let eachRow of gameValues) {
     // We start at index 2 because can't shift index 3 any more right
     for (let i = 1; i < eachRow.length; i++) {
@@ -425,18 +421,31 @@ function checkHorizontalMovement(gameValues) {
   for (eachRow of gameValues) {
     for (let i = 0; i < eachRow.length - 1; i++) {
       if (
-        gameValues[i] === gameValues[i + 1] ||
-        gameValues[i] === 0 ||
-        gameValues[i + 1] === 0
+        eachRow[i] === eachRow[i + 1] ||
+        eachRow[i] === 0 ||
+        eachRow[i + 1] === 0
       ) {
         return true;
       }
     }
-    return false;
   }
+  return false;
 }
 
-function checkVerticalMovement(gameValues) {}
+function checkVerticalMovement(gameValues) {
+  for (let i = 0; i < gameValues.length - 1; i++) {
+    for (j = 0; j < gameValues[i].length; j++) {
+      if (
+        gameValues[i][j] === gameValues[i + 1][j] ||
+        gameValues[i][j] === 0 ||
+        gameValues[i + 1][j] === 0
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
 // We will have to continuously create random tiles with a value of 2 on the
 // board, so we will put it in a function.
@@ -464,11 +473,9 @@ function newRandomTile(gameValues) {
 }
 
 newGameBtn.addEventListener("click", function () {
-  console.log("Click works");
   gameRun = true;
   gameResult.innerText = "Status: Playing Game";
   gameValues.length = 0;
-  console.log(gameValues);
   for (let i = 0; i < 4; i++) {
     gameValues.push([0, 0, 0, 0]);
   }
@@ -477,12 +484,18 @@ newGameBtn.addEventListener("click", function () {
   updateGameDisplay(gameDisplay, gameValues);
 });
 
-function checkLoser() {
+function checkLoser(gameValues) {
   // TODO:
   // for each element, check left right top and bottom to see if there are any
   // 0s or matching numbers. if there is none, that means the player cannot move
-  // anywhere and the game is over/
-  //
+  // anywhere and the game is over
+  if (
+    !checkHorizontalMovement(gameValues) &&
+    !checkVerticalMovement(gameValues)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 // Main Game loop
@@ -527,9 +540,13 @@ addEventListener("keydown", function (e) {
       newRandomTile(gameValues);
       updateGameDisplay(gameDisplay, gameValues);
     }
+    if (checkLoser(gameValues)) {
+      gameResult.innerText = `YOU HAVE LOST! The board is full with no possible movements`;
+      gameRun = false;
+    }
     for (eachRow of gameValues) {
       for (value of eachRow) {
-        if (value === 8) {
+        if (value === 2048) {
           gameResult.innerText = `WINNER! Congrats! You reached ${value}!!`;
           gameRun = false;
         }
