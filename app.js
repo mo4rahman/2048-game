@@ -55,6 +55,7 @@
 let titleDisplay = document.querySelector("#title");
 titleDisplay.innerHTML =
   "Welcome to 2048!<br>Press any arrow key to start playing.";
+let gameResult = document.querySelector("#game-result");
 // We'll have 2 arrays. One with all the stored tiles, and one array filled with 0's that
 // we will fill and update as the game is being played.
 // #FIXME: Refactor later and create a 'createGameboard' function (start of new game)
@@ -493,6 +494,14 @@ addEventListener("keydown", function (e) {
       shiftNumbersRight(gameValues);
       newRandomTile(gameValues);
       updateGameDisplay(gameDisplay, gameValues);
+    }
+    for (eachRow of gameValues) {
+      for (value of eachRow) {
+        if (value === 2048) {
+          gameResult.innerText = `Congrats! You reached ${value}!!`;
+          gameRun = false;
+        }
+      }
     }
   }
   // checking for a win: document.removeEventListener("keydown", function (e){})
