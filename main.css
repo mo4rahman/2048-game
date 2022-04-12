@@ -19,3 +19,12 @@ body {
   /* border-color: black;
     border-style: solid; */
 }
+
+#new-game {
+  background-color: aquamarine;
+  font-weight: bolder;
+  font-size: large;
+  margin-top: 10px;
+  width: 150px;
+  height: 50px;
+}

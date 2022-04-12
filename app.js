@@ -56,6 +56,7 @@ let titleDisplay = document.querySelector("#title");
 titleDisplay.innerHTML =
   "Welcome to 2048!<br>Press any arrow key to start playing.";
 let gameResult = document.querySelector("#game-result");
+let newGameBtn = document.querySelector("#new-game");
 // We'll have 2 arrays. One with all the stored tiles, and one array filled with 0's that
 // we will fill and update as the game is being played.
 // #FIXME: Refactor later and create a 'createGameboard' function (start of new game)
@@ -445,6 +446,20 @@ function newRandomTile(gameValues) {
   }
 }
 
+newGameBtn.addEventListener("click", function () {
+  console.log("Click works");
+  gameRun = true;
+  gameResult.innerText = "";
+  gameValues.length = 0;
+  console.log(gameValues);
+  for (let i = 0; i < 4; i++) {
+    gameValues.push([0, 0, 0, 0]);
+  }
+  newRandomTile(gameValues);
+  newRandomTile(gameValues);
+  updateGameDisplay(gameDisplay, gameValues);
+});
+
 function checkLoser() {
   // TODO:
   // for each element, check left right top and bottom to see if there are any
@@ -498,11 +513,10 @@ addEventListener("keydown", function (e) {
     for (eachRow of gameValues) {
       for (value of eachRow) {
         if (value === 2048) {
-          gameResult.innerText = `Congrats! You reached ${value}!!`;
+          gameResult.innerText = `WINNER! Congrats! You reached ${value}!!`;
           gameRun = false;
         }
       }
     }
   }
-  // checking for a win: document.removeEventListener("keydown", function (e){})
 });
