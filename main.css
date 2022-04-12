@@ -22,6 +22,10 @@ body {
     border-style: solid; */
 }
 
+.status {
+  display: inline-block;
+}
+
 #new-game {
   background-color: rgb(189, 227, 214);
   font-weight: bolder;
@@ -33,9 +37,11 @@ body {
   border-radius: 10px;
 }
 
+#score,
 #title,
 #game-result,
-#logo {
+#logo,
+#best {
   margin: auto;
   border-radius: 10px;
   border: solid;
@@ -59,4 +65,9 @@ body {
 
 #game-result {
   width: 300px;
+}
+
+#score,
+#best {
+  width: 120px;
 }
