@@ -421,6 +421,23 @@ function checkBoardFull(gameValues) {
   return true;
 }
 
+function checkHorizontalMovement(gameValues) {
+  for (eachRow of gameValues) {
+    for (let i = 0; i < eachRow.length - 1; i++) {
+      if (
+        gameValues[i] === gameValues[i + 1] ||
+        gameValues[i] === 0 ||
+        gameValues[i + 1] === 0
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
+function checkVerticalMovement(gameValues) {}
+
 // We will have to continuously create random tiles with a value of 2 on the
 // board, so we will put it in a function.
 function newRandomTile(gameValues) {
@@ -449,7 +466,7 @@ function newRandomTile(gameValues) {
 newGameBtn.addEventListener("click", function () {
   console.log("Click works");
   gameRun = true;
-  gameResult.innerText = "";
+  gameResult.innerText = "Status: Playing Game";
   gameValues.length = 0;
   console.log(gameValues);
   for (let i = 0; i < 4; i++) {
@@ -512,7 +529,7 @@ addEventListener("keydown", function (e) {
     }
     for (eachRow of gameValues) {
       for (value of eachRow) {
-        if (value === 2048) {
+        if (value === 8) {
           gameResult.innerText = `WINNER! Congrats! You reached ${value}!!`;
           gameRun = false;
         }
