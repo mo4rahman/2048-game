@@ -4,17 +4,19 @@ body {
 }
 .gameboard {
   display: grid;
-  grid-template-columns: 130px 130px 130px 130px;
-  grid-template-rows: 130px 130px 130px 130px;
-  margin-top: 50px;
+  grid-template-columns: 120px 120px 120px 120px;
+  grid-template-rows: 120px 120px 120px 120px;
+  margin-top: 25px;
   justify-content: center;
 }
 
 .game-tile {
   background-color: blanchedalmond;
   text-align: center;
-  font-size: 70px;
+  font-size: 45px;
   border: 10px solid rgb(247, 182, 118);
+  font-family: "Verdana";
+
   /* Can combine border styling in one line like above^ */
   /* border-color: black;
     border-style: solid; */
@@ -32,15 +34,29 @@ body {
 }
 
 #title,
-#game-result {
+#game-result,
+#logo {
   margin: auto;
   border-radius: 10px;
   border: solid;
-  width: 500px;
+  width: 400px;
   background-color: blanchedalmond;
-  
+  font-family: "Monaco";
+}
+
+#game-result,
+#title {
+  margin: 10px auto auto auto;
+}
+
+#logo {
+  width: 150px;
+  border-radius: 20px;
+  border: none;
+  background-color: pink;
+  font-family: "Copperplate";
 }
 
 #game-result {
-  margin: 20px auto auto auto;
+  width: 300px;
 }

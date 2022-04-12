@@ -83,8 +83,13 @@ for (let i = 0; i < 4; i++) {
 function updateGameDisplay(gameDisplay, gameValues) {
   for (let i = 0; i < gameValues.length; i++) {
     for (let j = 0; j < gameValues[i].length; j++) {
-      gameDisplay[i][j].innerText = gameValues[i][j];
-      updateColor(gameValues[i][j], gameDisplay[i][j]);
+      if (gameValues[i][j] === 0) {
+        gameDisplay[i][j].innerText = "";
+        updateColor(gameValues[i][j], gameDisplay[i][j]);
+      } else {
+        gameDisplay[i][j].innerText = gameValues[i][j];
+        updateColor(gameValues[i][j], gameDisplay[i][j]);
+      }
     }
   }
 }
