@@ -52,6 +52,9 @@
 // If i finish the project early, I can dive into creating a light mode/dark mode
 // toggle to change the colors of the page/board.
 
+let titleDisplay = document.querySelector("#title");
+titleDisplay.innerHTML =
+  "Welcome to 2048!<br>Press any arrow key to start playing.";
 // We'll have 2 arrays. One with all the stored tiles, and one array filled with 0's that
 // we will fill and update as the game is being played.
 // #FIXME: Refactor later and create a 'createGameboard' function (start of new game)
@@ -425,6 +428,7 @@ function newRandomTile(gameValues) {
   // we should only randomly select open spots.
   if (checkBoardFull(gameValues)) {
     console.log("Cannot create a random tile, board is full");
+    // gameRun = false // FIXME:
     return;
   }
   let randomRow;
@@ -438,6 +442,14 @@ function newRandomTile(gameValues) {
       return;
     }
   }
+}
+
+function checkLoser() {
+  // TODO:
+  // for each element, check left right top and bottom to see if there are any
+  // 0s or matching numbers. if there is none, that means the player cannot move
+  // anywhere and the game is over/
+  //
 }
 
 // Main Game loop
@@ -483,4 +495,5 @@ addEventListener("keydown", function (e) {
       updateGameDisplay(gameDisplay, gameValues);
     }
   }
+  // checking for a win: document.removeEventListener("keydown", function (e){})
 });

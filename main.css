@@ -1,5 +1,6 @@
 body {
   background-color: rgb(233, 219, 169);
+  text-align: center;
 }
 .gameboard {
   display: grid;
