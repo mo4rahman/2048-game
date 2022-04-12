@@ -79,7 +79,37 @@ function updateGameDisplay(gameDisplay, gameValues) {
   for (let i = 0; i < gameValues.length; i++) {
     for (let j = 0; j < gameValues[i].length; j++) {
       gameDisplay[i][j].innerText = gameValues[i][j];
+      updateColor(gameValues[i][j], gameDisplay[i][j]);
     }
+  }
+}
+
+// Create a change color function to change the color of the tiles
+function updateColor(gameValueItem, gameDisplayItem) {
+  if (gameValueItem === 2) {
+    gameDisplayItem.style.backgroundColor = "red";
+  } else if (gameValueItem === 4) {
+    gameDisplayItem.style.backgroundColor = "blue";
+  } else if (gameValueItem === 8) {
+    gameDisplayItem.style.backgroundColor = "green";
+  } else if (gameValueItem === 16) {
+    gameDisplayItem.style.backgroundColor = "orange";
+  } else if (gameValueItem === 32) {
+    gameDisplayItem.style.backgroundColor = "blue";
+  } else if (gameValueItem === 64) {
+    gameDisplayItem.style.backgroundColor = "yellow";
+  } else if (gameValueItem === 128) {
+    gameDisplayItem.style.backgroundColor = "purple";
+  } else if (gameValueItem === 256) {
+    gameDisplayItem.style.backgroundColor = "grey";
+  } else if (gameValueItem === 512) {
+    gameDisplayItem.style.backgroundColor = "gold";
+  } else if (gameValueItem === 1024) {
+    gameDisplayItem.style.backgroundColor = "turquoise";
+  } else if (gameValueItem === 2048) {
+    gameDisplayItem.style.backgroundColor = "darkseagreen";
+  } else {
+    gameDisplayItem.style.backgroundColor = "blanchedalmond";
   }
 }
 
