@@ -474,7 +474,9 @@ function newRandomTile(gameValues) {
 
 newGameBtn.addEventListener("click", function () {
   gameRun = true;
-  gameResult.innerText = "Status: Playing Game";
+  gameResult.innerHTML = "Status: Playing Game";
+  gameResult.style.backgroundColor = "blanchedalmond";
+
   gameValues.length = 0;
   for (let i = 0; i < 4; i++) {
     gameValues.push([0, 0, 0, 0]);
@@ -542,6 +544,7 @@ addEventListener("keydown", function (e) {
     }
     if (checkLoser(gameValues)) {
       gameResult.innerText = `YOU HAVE LOST! The board is full with no possible movements`;
+      gameResult.style.backgroundColor = "rgb(241, 151, 166)";
       gameRun = false;
     }
     for (eachRow of gameValues) {
