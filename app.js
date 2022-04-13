@@ -57,6 +57,9 @@ titleDisplay.innerHTML =
   "Welcome to 2048!<br>Press any arrow key to start playing.";
 let gameResult = document.querySelector("#game-result");
 let newGameBtn = document.querySelector("#new-game");
+let scoreBoard = document.querySelector("#score");
+let bestDisplay = document.querySelector("#best");
+let bestValue = 0;
 // We'll have 2 arrays. One with all the stored tiles, and one array filled with 0's that
 // we will fill and update as the game is being played.
 // #FIXME: Refactor later and create a 'createGameboard' function (start of new game)
@@ -342,6 +345,7 @@ function shiftNumbersRight(gameValues) {
     }
   }
 }
+
 function shiftNumbersLeft(gameValues) {
   for (let eachRow of gameValues) {
     // We start at index 2 because can't shift index 3 any more right
@@ -412,6 +416,7 @@ function shiftNumbersLeft(gameValues) {
     }
   }
 }
+
 function checkBoardFull(gameValues) {
   // Doing eachRow 'in' instead of 'of' broke my code. Got it mixed up with python
   for (eachRow of gameValues) {
