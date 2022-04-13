@@ -457,6 +457,17 @@ function checkVerticalMovement(gameValues) {
   return false;
 }
 
+function checkBest(gameValues, bestValue) {
+  for (eachRow of gameValues) {
+    for (let i = 0; i < gameValues.length; i++) {
+      if (eachRow[i] > bestValue) {
+        bestValue = eachRow[i];
+      }
+    }
+  }
+  return bestValue;
+}
+
 // We will have to continuously create random tiles with a value of 2 on the
 // board, so we will put it in a function.
 function newRandomTile(gameValues) {
@@ -552,6 +563,8 @@ addEventListener("keydown", function (e) {
       newRandomTile(gameValues);
       updateGameDisplay(gameDisplay, gameValues);
     }
+    bestValue = checkBest(gameValues, bestValue);
+    bestDisplay.innerText = `Best: ${bestValue}`;
     if (checkLoser(gameValues)) {
       gameResult.innerText = `YOU HAVE LOST! The board is full with no possible movements`;
       gameResult.style.backgroundColor = "rgb(241, 151, 166)";
