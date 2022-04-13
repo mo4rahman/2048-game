@@ -63,6 +63,14 @@ The game will start off with a 4x4 grid game board of tiles (16 tiles in total),
 
 - as a user, I want the game to not register any moves after I lose
 
+## Future Goals
+
+- In a future iteration, I would like to implement smooth sliding of the tiles to clearly show which tiles are moving and which tiles are combining
+
+- Another future iteration I would like to implement is to be able to save the user's name and their best score, and have it appear even if the exit the broswer and come back to it.
+
+- For aesthetics, I would like to update the CSS, and research on what color combinations work best together.
+
 ## Technologies Used
 
 - CSS, JavaScript, HTML5
@@ -71,4 +79,5 @@ The game will start off with a 4x4 grid game board of tiles (16 tiles in total),
 
 [Play the 2048 on your broswer here!](https://mo4rahman.github.io/2048-game/)
 
-- This game should run on any browser.
+- This game should run on any browser (including old versions of Internet Explorer)
+- If there is any issue playing the game, please let me know by submitting an issue or a pull request!
