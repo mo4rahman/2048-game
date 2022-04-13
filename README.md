@@ -26,7 +26,8 @@ There should be 3 text displays.
 2. A status of the game. The statuses can be:
    - Playing Game, You have lost, or Winner
 3. A Best Score display. This will save even when you start a new game
-   ![Screen Shot 2022-04-13 at 8 40 21 AM](https://user-images.githubusercontent.com/68241119/163182253-da0627bb-6626-4b39-8798-9f45b1c7f0fe.png)
+
+![Screen Shot 2022-04-13 at 8 40 21 AM](https://user-images.githubusercontent.com/68241119/163182253-da0627bb-6626-4b39-8798-9f45b1c7f0fe.png)
 
 ### Losing Scenario
 

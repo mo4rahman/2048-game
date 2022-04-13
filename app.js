@@ -521,8 +521,9 @@ addEventListener("keydown", function (e) {
     // Check for a winner (if they reached 2048)
     for (eachRow of gameValues) {
       for (value of eachRow) {
-        if (value === 2048) {
+        if (value === 16) {
           gameResult.innerText = `WINNER! Congrats! You reached ${value}!!`;
+          gameResult.style.backgroundColor = "green";
           gameRun = false;
         }
       }
