@@ -8,7 +8,7 @@ This is a fun game where you slide tiles up, down, left, or right in order to co
 
 The game will start off with a 4x4 grid game board of tiles (16 tiles in total), with 2 tiles of value 2 being randomly placed on the board. The game will be ready to go once you open the link.
 
--user will be able to press the up, down, left, or right arrow key on their keyboards to slide the tiles the most they can to that direction (either to the end of the board, or to the nearest possible space)
+- user will be able to press the up, down, left, or right arrow key on their keyboards to slide the tiles the most they can to that direction (either to the end of the board, or to the nearest possible space)
 
 - sliding will cause a new tile of value 2 to appear randomly on the board.
 
@@ -19,3 +19,9 @@ The game will start off with a 4x4 grid game board of tiles (16 tiles in total),
 - at any point, even after the game ends, you have an option to hit the new game button to get a fresh new board.
 
 ## MVP Wireframes
+
+![Screen Shot 2022-04-13 at 8 12 10 AM](https://user-images.githubusercontent.com/68241119/163177706-19a31eff-1fda-4028-8099-b621c1b23dfc.png)
+
+![Screen Shot 2022-04-13 at 8 12 39 AM](https://user-images.githubusercontent.com/68241119/163177751-b9fb3afa-f8d5-4e18-bea0-4d7cd3debf7a.png)
+
+![Screen Shot 2022-04-13 at 8 14 07 AM](https://user-images.githubusercontent.com/68241119/163177786-0c2567b4-2e76-4436-87b1-6def82df0167.png)
