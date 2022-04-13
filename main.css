@@ -16,6 +16,7 @@ body {
   font-size: 45px;
   border: 10px solid rgb(247, 182, 118);
   font-family: "Verdana";
+  /* transition: 1s; */
 
   /* Can combine border styling in one line like above^ */
   /* border-color: black;
