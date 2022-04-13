@@ -37,7 +37,6 @@ body {
   border-radius: 10px;
 }
 
-#score,
 #title,
 #game-result,
 #logo,
@@ -67,7 +66,6 @@ body {
   width: 300px;
 }
 
-#score,
 #best {
   width: 120px;
 }

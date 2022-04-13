@@ -1,68 +1,14 @@
-// Some pesudo-code to get a general sense of what we need to do to get at least a functional and working mvp
-
-// We will want to do majority of the work in JS first, and make sure we have the
-// functionality down before we dive into CSS and HTML. However, we will start
-// with some basic CSS and HTML to at least visualize our game.
-
-// Create Game board:
-// Create a square board in the center of the page, with lines that divide the
-// board into a 4x4 grid of empty white space
-// - DONE
-
-// Create Tiles:
-// Have each square in our game board grid have the ability to display a square
-// tile for each square (we can change the color and number based on js events)
-// - DONE
-
-// Initializing game:
-// Have 2 random squares in our grid be a tile of 2 with a color (all same
-// numbers should have the same color. every 2 will be beige, every 4 will be a
-// darker beige, etc).
-
-// Events:
-// Make JS listen for arrow key presses:
-// (have to research, but I think there should be an option for a 'keydown' press
-// or something like that. Each key should have a number attached to it.)
-// Also create arrow key buttons that when clicked, will have the same
-// functionality as when pressing respective arrow keys.
-// Pressing a direction should have the tiles all shift the most they can in that
-// direction (preferably with a sliding animation instead of just reappearing
-// where they should be and refreshing.).
-// The slide functionality will probably be put into a slide function since we
-// will be doing that frequently.
-// We will probably use 4 arrays and for loops to check each row when sliding in
-// a certain direction.
-
-// Checking Conditions:
-// When moving in a direction, check to see if the preceding array (assuming
-// there is, we can have a check for how far the element can travel) has any
-// numbers (0 or empty string for blank). Also check to see if the number is same,
-// if so then add the number and make the previous array element blank.
-// Have a gameRunning flag to be true unless the board is filled with nowhere to
-// slide, then that means the player has lost the game.
-
-// Extra buttons/displays
-// Have a New Game button to reset the game board (possibly make a
-// "createGameboard()" function and have all that in there.)
-// Have a score board keeping track of score, as well as comparing the score
-// once the player loses and replaces best score if it's better than the best
-// score, else does not save the score.
-
-// Stretch Goals
-// If i finish the project early, I can dive into creating a light mode/dark mode
-// toggle to change the colors of the page/board.
-
+// Initialize DOM variables and other variables needed on top.
 let titleDisplay = document.querySelector("#title");
 titleDisplay.innerHTML =
   "Welcome to 2048!<br>Press any arrow key to start playing.";
 let gameResult = document.querySelector("#game-result");
 let newGameBtn = document.querySelector("#new-game");
-let scoreBoard = document.querySelector("#score");
 let bestDisplay = document.querySelector("#best");
 let bestValue = 0;
+
 // We'll have 2 arrays. One with all the stored tiles, and one array filled with 0's that
 // we will fill and update as the game is being played.
-// #FIXME: Refactor later and create a 'createGameboard' function (start of new game)
 const allGameTiles = document.querySelectorAll(".game-tile");
 const gameDisplay = [];
 for (i = 0; i < 16; i += 4) {
@@ -80,10 +26,9 @@ for (let i = 0; i < 4; i++) {
   gameValues.push([0, 0, 0, 0]);
 }
 
-// Now tie together the values to the DOM
-// Updates old display with current changes after keypress. We will
-// also use this to initialize the board at the start of the game.
 function updateGameDisplay(gameDisplay, gameValues) {
+  // Updates old display with current changes after keypress. We will
+  // also use this to initialize the board at the start of the game.
   for (let i = 0; i < gameValues.length; i++) {
     for (let j = 0; j < gameValues[i].length; j++) {
       if (gameValues[i][j] === 0) {
@@ -97,8 +42,9 @@ function updateGameDisplay(gameDisplay, gameValues) {
   }
 }
 
-// Create a change color function to change the color of the tiles
 function updateColor(gameValueItem, gameDisplayItem) {
+  // Change the color of the tiles
+
   if (gameValueItem === 2) {
     gameDisplayItem.style.backgroundColor = "red";
   } else if (gameValueItem === 4) {
@@ -126,13 +72,11 @@ function updateColor(gameValueItem, gameDisplayItem) {
   }
 }
 
-// For now we'll focus on functionality and shifting numbers and making them
-// appear. When we finsih, we'll actually slide the tiles visually.
 // IMPORTANT! WHICHEVER WAY WE'RE SHIFTING, START WORKING
 // FROM THE FARTHEST MOST SIDE. FOR EXAMPLE, IF WE'RE
 // SHIFTING UP, START FROM TOP ROW AND TRICKLED DOWN
 function shiftNumbersUp(gameValues) {
-  // Run when up arrow key pressed
+  // Shift every tile as far up as they can go
   // We"ll go row by row through each element
   // We'll start with row 1 because row 0 can't move up at row 0
   for (let i = 1; i < gameValues.length; i++) {
@@ -205,6 +149,7 @@ function shiftNumbersUp(gameValues) {
 }
 
 function shiftNumbersDown(gameValues) {
+  // Shift every tile as far down as they can go
   // We'll start with row 2 because row 3 can't move down at row 3
   for (let i = 2; i >= 0; i--) {
     for (j = 0; j < gameValues[i].length; j++) {
@@ -276,6 +221,8 @@ function shiftNumbersDown(gameValues) {
 }
 
 function shiftNumbersRight(gameValues) {
+  // Shift every tile as right down as they can go
+
   for (let eachRow of gameValues) {
     // We start at index 2 because can't shift index 3 any more right
     for (let i = 2; i >= 0; i--) {
@@ -347,6 +294,8 @@ function shiftNumbersRight(gameValues) {
 }
 
 function shiftNumbersLeft(gameValues) {
+  // Shift every tile as far left as they can go
+
   for (let eachRow of gameValues) {
     // We start at index 2 because can't shift index 3 any more right
     for (let i = 1; i < eachRow.length; i++) {
@@ -418,7 +367,7 @@ function shiftNumbersLeft(gameValues) {
 }
 
 function checkBoardFull(gameValues) {
-  // Doing eachRow 'in' instead of 'of' broke my code. Got it mixed up with python
+  // check to see if board is full, which means no random tiles can be generated
   for (eachRow of gameValues) {
     if (eachRow.includes(0)) {
       return false;
@@ -428,6 +377,7 @@ function checkBoardFull(gameValues) {
 }
 
 function checkHorizontalMovement(gameValues) {
+  // Check to see if tiles can move left or right
   for (eachRow of gameValues) {
     for (let i = 0; i < eachRow.length - 1; i++) {
       if (
@@ -443,6 +393,8 @@ function checkHorizontalMovement(gameValues) {
 }
 
 function checkVerticalMovement(gameValues) {
+  // Check to see if tiles can move up or down
+
   for (let i = 0; i < gameValues.length - 1; i++) {
     for (j = 0; j < gameValues[i].length; j++) {
       if (
@@ -458,6 +410,7 @@ function checkVerticalMovement(gameValues) {
 }
 
 function checkBest(gameValues, bestValue) {
+  // Compares best value on the scoreboard with the largest number on the gameboard
   for (eachRow of gameValues) {
     for (let i = 0; i < gameValues.length; i++) {
       if (eachRow[i] > bestValue) {
@@ -468,16 +421,11 @@ function checkBest(gameValues, bestValue) {
   return bestValue;
 }
 
-// We will have to continuously create random tiles with a value of 2 on the
-// board, so we will put it in a function.
 function newRandomTile(gameValues) {
-  // Forgot to have a break if there is no empty tile
-  // FIXME: Right now, we check random spots to create the random tile, even if
-  // they're taken. Later,
-  // we should only randomly select open spots.
+  // create random tiles with a value of 2 on the gameboard
+  // REMEMBER to have a break if there is no empty tile
   if (checkBoardFull(gameValues)) {
-    console.log("Cannot create a random tile, board is full");
-    // gameRun = false // FIXME:
+    // We will not creae a randomTile
     return;
   }
   let randomRow;
@@ -494,6 +442,7 @@ function newRandomTile(gameValues) {
 }
 
 newGameBtn.addEventListener("click", function () {
+  // Wipes board and initializes game. Also reverts game result message
   gameRun = true;
   gameResult.innerHTML = "Status: Playing Game";
   gameResult.style.backgroundColor = "blanchedalmond";
@@ -508,10 +457,8 @@ newGameBtn.addEventListener("click", function () {
 });
 
 function checkLoser(gameValues) {
-  // TODO:
-  // for each element, check left right top and bottom to see if there are any
-  // 0s or matching numbers. if there is none, that means the player cannot move
-  // anywhere and the game is over
+  // Checks to see if there is no way to move any tiles, which means the
+  // player has lost
   if (
     !checkHorizontalMovement(gameValues) &&
     !checkVerticalMovement(gameValues)
@@ -521,7 +468,7 @@ function checkLoser(gameValues) {
   return false;
 }
 
-// Main Game loop
+// Main Game Flag
 let gameRun = true;
 
 // INITIALIZE THE BOARD
@@ -531,45 +478,47 @@ newRandomTile(gameValues);
 newRandomTile(gameValues);
 updateGameDisplay(gameDisplay, gameValues);
 
-// Used document.onkeydown because I looked it up on
-// google, but then I found that we can just use our
-// addEventListener like we always have
+// Can also use document.onkeydown
 addEventListener("keydown", function (e) {
   // keyCode is technically depracated (“inconsistent across platforms and even the same implementation on different operating systems or using different localizations.” according to a medium article)
 
-  // Used just in case somehow, someone is running my game in an earlier
+  // window.event fallback used just in case somehow, someone is running my game in an earlier
   // version of Internet Explorer that doesn't pass in the window event.
   e = e || window.event;
   key = e.key || e.keyCode;
   if (gameRun) {
     if (key === 38 || key === "ArrowUp") {
-      // up arrow
+      // up arrow press
       shiftNumbersUp(gameValues);
       newRandomTile(gameValues);
       updateGameDisplay(gameDisplay, gameValues);
     } else if (key === 40 || key === "ArrowDown") {
-      // down arrow
+      // down arrow press
       shiftNumbersDown(gameValues);
       newRandomTile(gameValues);
       updateGameDisplay(gameDisplay, gameValues);
     } else if (key === 37 || key === "ArrowLeft") {
-      // left arrow
+      // left arrow press
       shiftNumbersLeft(gameValues);
       newRandomTile(gameValues);
       updateGameDisplay(gameDisplay, gameValues);
     } else if (key === 39 || key === "ArrowRight") {
-      // right arrow
+      // right arrow press
       shiftNumbersRight(gameValues);
       newRandomTile(gameValues);
       updateGameDisplay(gameDisplay, gameValues);
     }
+
     bestValue = checkBest(gameValues, bestValue);
     bestDisplay.innerText = `Best: ${bestValue}`;
+
+    // Check for a loser (if board is full and no way you can move)
     if (checkLoser(gameValues)) {
       gameResult.innerText = `YOU HAVE LOST! The board is full with no possible movements`;
       gameResult.style.backgroundColor = "rgb(241, 151, 166)";
       gameRun = false;
     }
+    // Check for a winner (if they reached 2048)
     for (eachRow of gameValues) {
       for (value of eachRow) {
         if (value === 2048) {
