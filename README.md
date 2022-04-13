@@ -1,6 +1,7 @@
 # 2048-game
 
 ## About the Game
+[Play the 2048 on your broswer Here!](https://mo4rahman.github.io/2048-game/)
 
 This is a fun game where you slide tiles up, down, left, or right in order to combine matching tiles. There is no set winner, as the objective of the game is just to reach the highest score until the entire board is filled up with tiles and you cannot slide any direction (you can only slide if there are empty spaces or there are the same tiles next to each that can combine into 1). For the sake of a "win" clause, we set the max score you can get to be 2048.
 - Fun Fact: The creator of 2048, Gabriele Cirulli, made the game just as a casual project he finished in a few days.
