@@ -409,8 +409,9 @@ function checkVerticalMovement(gameValues) {
   return false;
 }
 
-function checkBest(gameValues, bestValue) {
+function checkBest(gameValues, bestValue, yalla) {
   // Compares best value on the scoreboard with the largest number on the gameboard
+  let i = 2;
   for (eachRow of gameValues) {
     for (let i = 0; i < gameValues.length; i++) {
       if (eachRow[i] > bestValue) {
